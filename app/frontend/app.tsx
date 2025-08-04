@@ -13,9 +13,7 @@ export default function App() {
     ;(async function () {
       try {
         const { user, client } = await sdk.context
-
         const capabilities = await sdk.getCapabilities()
-
         updateStore({ user, client, capabilities })
       } catch (error) {}
 
@@ -24,7 +22,6 @@ export default function App() {
       try {
         const { token: session } = await sdk.quickAuth.getToken()
         updateStore({ session })
-        // axios.post("/api/login", {}, { headers: { Authorization: `Bearer ${session}` } })
       } catch (error) {}
     })()
   }, [])
@@ -45,11 +42,6 @@ export default function App() {
             />
           </Routes>
         </BrowserRouter>
-        {/* <img
-          src="/images/global/bg.svg"
-          alt="bg"
-          className={clsx("fixed top-0 left-0 w-screen h-screen object-fill -z-10")}
-        /> */}
       </Providers>
     </div>
   )

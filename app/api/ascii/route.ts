@@ -1,11 +1,7 @@
 import Jimp from "jimp"
 import { NextRequest, NextResponse } from "next/server"
 
-// const asciiChars = "█▓▒░. ";
-// const asciiChars = "@#%&?*+=-:. ";
-// const asciiChars = "#WMBRXVYIti+=~:,.. ";
 const asciiChars = "⣿⣷⣯⣟⡿⢿⠻⠿⠛⠋⠁⠀"
-// const asciiChars = "█▓▒░⠿⠻⠶⠦⠤⠄⠂ "
 
 export async function GET(req: NextRequest) {
   try {
@@ -20,7 +16,7 @@ export async function GET(req: NextRequest) {
     if (!imageRes.ok) return new NextResponse("Failed to fetch image", { status: 400 })
 
     const buffer = Buffer.from(await imageRes.arrayBuffer())
-    const ascii = await imageToASCII(buffer, Math.floor(Number(width) / 10.5))
+    const ascii = await imageToASCII(buffer, 30)
 
     return new NextResponse(ascii, {
       status: 200,
@@ -34,8 +30,8 @@ export async function GET(req: NextRequest) {
   }
 }
 
-async function imageToASCII(buffer: Buffer, width = 36) {
-  const aspectRatio = 0.7
+async function imageToASCII(buffer: Buffer, width: number) {
+  const aspectRatio = 0.6
   const image = await Jimp.read(buffer)
   image.resize(width, Math.floor(width * aspectRatio)).grayscale()
 
