@@ -1,5 +1,4 @@
 import { store } from "@/lib/store"
-import sdk from "@farcaster/miniapp-sdk"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import clsx from "clsx"
@@ -15,17 +14,17 @@ export default function Home() {
   })
 
   return (
-    <main className={clsx("fixed top-15 inset-x-0 bottom-0")}>
+    <main className={clsx("fixed top-5 inset-x-0 bottom-0", "overflow-hidden")}>
       <div className={clsx("flex justify-center")}>
         <div className={clsx("whitespace-pre font-mono leading-none")}>{isLoading ? "isLoading..." : data}</div>
       </div>
 
-      <button
+      {/* <button
         onClick={() => sdk.actions.composeCast({ text: data, embeds: [`https://${process.env.NEXT_PUBLIC_HOST}`] })}
         className={clsx("absolute bottom-15 left-1/2 -translate-x-1/2", "text-lg lowercase")}
       >
         Share
-      </button>
+      </button> */}
     </main>
   )
 }

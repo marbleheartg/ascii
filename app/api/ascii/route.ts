@@ -5,8 +5,12 @@ const asciiChars = "⣿⣷⣯⣟⡿⢿⠻⠿⠛⠋⠁⠀"
 
 export async function GET(req: NextRequest) {
   try {
-    const pfpUrl = "https://imagedelivery.net/BXluQx4ige9GuW0Ia56BHw/bc698287-5adc-4cc5-a503-de16963ed900/original"
+    const pfpUrl =
+      "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/bc698287-5adc-4cc5-a503-de16963ed900/original"
+
+    // "https://imagedelivery.net/BXluQx4ige9GuW0Ia56BHw/6aa18817-6238-4b25-086f-1edd0c438f00/original"
     // req.nextUrl.searchParams.get("pfpUrl")
+
     if (!pfpUrl) return new NextResponse("Missing pfpUrl", { status: 400 })
 
     const width = req.nextUrl.searchParams.get("width")
@@ -16,7 +20,7 @@ export async function GET(req: NextRequest) {
     if (!imageRes.ok) return new NextResponse("Failed to fetch image", { status: 400 })
 
     const buffer = Buffer.from(await imageRes.arrayBuffer())
-    const ascii = await imageToASCII(buffer, 30)
+    const ascii = await imageToASCII(buffer, 33)
 
     return new NextResponse(ascii, {
       status: 200,
@@ -31,7 +35,7 @@ export async function GET(req: NextRequest) {
 }
 
 async function imageToASCII(buffer: Buffer, width: number) {
-  const aspectRatio = 0.6
+  const aspectRatio = 0.7
   const image = await Jimp.read(buffer)
   image.resize(width, Math.floor(width * aspectRatio)).grayscale()
 
