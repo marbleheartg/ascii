@@ -5,7 +5,6 @@ import sdk from "@farcaster/miniapp-sdk"
 import { useEffect } from "react"
 import { BrowserRouter, Route, Routes } from "react-router"
 import Header from "./components/Header"
-import Menu from "./components/Menu"
 import Home from "./pages/Home"
 
 export default function App() {
@@ -45,7 +44,6 @@ export default function App() {
               }
             />
           </Routes>
-          <Menu />
         </BrowserRouter>
         {/* <img
           src="/images/global/bg.svg"

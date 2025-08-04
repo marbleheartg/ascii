@@ -14,9 +14,9 @@
 }
 
 @layer base {
-  * {
+  /* * {
     @apply select-none touch-manipulation;
-  }
+  } */
 
   body {
     @apply bg-black font-medium text-white;
